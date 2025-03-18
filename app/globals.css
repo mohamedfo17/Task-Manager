@@ -5,30 +5,16 @@
 
 
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Merriweather Sans, sans-serif;
+body, html {
+  background-color: #F6F5F3 !important;
+  font-family: "Merriweather Sans", sans-serif;
   scroll-behavior: smooth;
+  
+}
+
+#__next, main {
+  background-color: #F6F5F3 !important;
 }
 .btno{
 background-color:#F6F5F3 ;
@@ -42,6 +28,4 @@ margin-left: 1rem;
 .btno:hover{
   opacity: 0.8;
 }
-.btno:before{
-  content:🎯;
-}
+
