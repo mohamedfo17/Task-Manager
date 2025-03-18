@@ -1,7 +1,8 @@
 'use client'
 import Image from "next/image";
 import Pending from "./pending/page";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import Swal from "sweetalert2";
 export default function Home() {
   const [tasks, setTasks] = useState<string[]>(() => {
     const storedTasks = window.localStorage.getItem("tasks");
@@ -13,8 +14,28 @@ export default function Home() {
       setTasks([...tasks, inputElement.value]);
       window.localStorage.setItem("tasks",JSON.stringify([...tasks, inputElement.value]));
       inputElement.value="";
+    }else{
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Task not valid!",
+      });
     }
   }
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === "Enter") {
+        addTask();
+      }
+    };
+
+    window.addEventListener("keypress", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keypress", handleKeyPress);
+    };
+  }, [tasks]);
+
   return (
     <main className="flex flex-col items-center justify-center h-[100%] bg-[#F6F5F3] w-[100%]">
       <ul className="menu menu-horizontal bg-base-200 rounded-box w-full max-w-md flex justify-center items-center  gap-4 ">
